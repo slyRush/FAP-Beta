@@ -35,7 +35,7 @@ $app->get('/{$table_name}s', 'authenticate', function() use ($app, $db, $logMana
         foreach (${$table_name}s as ${$table_name}) array_push($data_{$table_name}s, JSON::removeNode(${$table_name}, "password_hash"));
 
         $logManager->setLog($user_connected, (string)${$table_name}s, false);
-        echoResponse(200, true, "Tous les auteurs retournés", $data_{$table_name}s);
+        echoResponse(200, true, "Tous les {$table_name} retourné(e)s", $data_{$table_name}s);
     }
     else
     {

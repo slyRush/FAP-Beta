@@ -40,17 +40,9 @@ $app->post('/login', function() use ($app, $db, $logManager) {
     {
         if (PassHash::check_password(${$table_name}['password_hash'], $password))
         {
-            $user = JSON::removeNode(${$table_name}, "password_hash"); //remove password_hash column from $user
-            if($user["status"] == 0) //{$table_name} activé
-            {
-                $logManager->setLog(${$table_name}, (string)${$table_name}_query, false);
-                echoResponse(200, true, "Connexion réussie", ${$table_name}); // Mot de passe utilisateur est correcte
-            }
-            else
-            {
-                $logManager->setLog(${$table_name}, (string)${$table_name}_query, true);
-                echoResponse(200, true, "Connexion réussie", ${$table_name}); // Mot de passe utilisateur est correcte
-            }
+            ${$table_name} = JSON::removeNode(${$table_name}, "password_hash"); //remove password_hash column from $user
+            $logManager->setLog(${$table_name}, (string)${$table_name}_query, true);
+            echoResponse(200, true, "Connexion réussie", ${$table_name}); // Mot de passe utilisateur est correcte
         }
         else
         {
@@ -106,7 +98,7 @@ $app->post('/register', function() use ($app, $db, $logManager) {
             if($insert_{$table_name} != FALSE || is_array($insert_{$table_name}))
             {
                 $logManager->setLog(null, (string)${$table_name}_exist_query . " / " . buildSqlQueryInsert("{$table_name}", $data), false);
-                echoResponse(201, true, "Author inscrit avec succès", $insert_{$table_name});
+                echoResponse(201, true, "{$table_name} inscrit avec succès", $insert_{$table_name});
             }
         }
     }

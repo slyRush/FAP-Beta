@@ -30,7 +30,7 @@ function init()
 {
     @mkdir("generated");
     @mkdir("generated/routes");
-    @mkdir("../../v1/routes_automatic_generated");
+    @mkdir("../../v1/routes");
 
     /** Auto generate ' . WSVERSION . ' */
     @mkdir("../../" . WSVERSION);
@@ -253,11 +253,11 @@ function generateAllRoutesFiles($ret)
             $template->set('required_params_register', "name','email','password");
             $template->write('generated/routes/route_login_register_'.$tableName.'.php');
 
-            $fileCreated .= "require_once 'routes_automatic_generated/route_$tableName.php'; <br>";
-            $fileCreated .= "require_once 'routes_automatic_generated/route_login_register_$tableName.php'; <br>";
+            $fileCreated .= "require_once 'routes/route_$tableName.php'; <br>";
+            $fileCreated .= "require_once 'routes/route_login_register_$tableName.php'; <br>";
 
-            //copy('generated/routes/route_'.$tableName.'.php', '../../v1/routes_automatic_generated/route_'.$tableName.'.php');
-            //copy('generated/routes/route_login_register_'.$tableName.'.php', '../../v1/routes_automatic_generated/route_login_register_'.$tableName.'.php');
+            //copy('generated/routes/route_'.$tableName.'.php', '../../v1/routes/route_'.$tableName.'.php');
+            //copy('generated/routes/route_login_register_'.$tableName.'.php', '../../v1/routes/route_login_register_'.$tableName.'.php');
 
             //' . WSVERSION . '
             copy('generated/routes/route_'.$tableName.'.php', '../../' . WSVERSION . '/routes/route_'.$tableName.'.php');
@@ -276,9 +276,9 @@ function generateAllRoutesFiles($ret)
                         $template->set('table_name_affected', $association[$tableName]);
                         $template->write('generated/routes/route_'.$tableName.'.php');
 
-                        $fileCreated .= "require_once 'routes_automatic_generated/route_$tableName.php'; <br>";
+                        $fileCreated .= "require_once 'routes/route_$tableName.php'; <br>";
 
-                        //copy('generated/routes/route_'.$tableName.'.php', '../../v1/routes_automatic_generated/route_'.$tableName.'.php');
+                        //copy('generated/routes/route_'.$tableName.'.php', '../../v1/routes/route_'.$tableName.'.php');
 
                         //' . WSVERSION . '
                         copy('generated/routes/route_'.$tableName.'.php', '../../' . WSVERSION . '/routes/route_'.$tableName.'.php');
@@ -295,9 +295,9 @@ function generateAllRoutesFiles($ret)
                     $template->set('table_name_second_part', explode("_",$tableName)[1]);
                     $template->write('generated/routes/route_'.$tableName.'.php');
 
-                    $fileCreated .= "require_once 'routes_automatic_generated/route_$tableName.php'; <br>";
+                    $fileCreated .= "require_once 'routes/route_$tableName.php'; <br>";
 
-                    //copy('generated/routes/route_'.$tableName.'.php', '../../v1/routes_automatic_generated/route_'.$tableName.'.php');
+                    //copy('generated/routes/route_'.$tableName.'.php', '../../v1/routes/route_'.$tableName.'.php');
 
                     //' . WSVERSION . '
                     copy('generated/routes/route_'.$tableName.'.php', '../../' . WSVERSION . '/routes/route_'.$tableName.'.php');
@@ -310,9 +310,9 @@ function generateAllRoutesFiles($ret)
                         $template->set('required_params', getFieldsParams($tableName));
                         $template->write('generated/routes/route_'.$tableName.'.php');
 
-                        $fileCreated .= "require_once 'routes_automatic_generated/route_$tableName.php'; <br>";
+                        $fileCreated .= "require_once 'routes/route_$tableName.php'; <br>";
 
-                        //copy('generated/routes/route_'.$tableName.'.php', '../../v1/routes_automatic_generated/route_'.$tableName.'.php');
+                        //copy('generated/routes/route_'.$tableName.'.php', '../../v1/routes/route_'.$tableName.'.php');
 
                         //' . WSVERSION . '
                         copy('generated/routes/route_'.$tableName.'.php', '../../' . WSVERSION . '/routes/route_'.$tableName.'.php');
@@ -323,7 +323,7 @@ function generateAllRoutesFiles($ret)
 
     //route_login_register_simple
     //copy('generated/routes/route_login_register_author.php', 'generated/routes/route_login_register.php');
-    //copy('generated/routes/route_login_register_author.php', '../../v1/routes_automatic_generated/route_login_register.php');
+    //copy('generated/routes/route_login_register_author.php', '../../v1/routes/route_login_register.php');
 
     //' . WSVERSION . '
     //copy('generated/routes/route_login_register_author.php', 'generated/routes/route_login_register.php');
@@ -331,7 +331,7 @@ function generateAllRoutesFiles($ret)
 
     /** FIN STATIC */
 
-    //$fileCreated .= "require_once 'routes_automatic_generated/route_login_register.php'; <br>"; ?>
+    //$fileCreated .= "require_once 'routes/route_login_register.php'; <br>"; ?>
 
     <!DOCTYPE html>
     <html lang="en">
